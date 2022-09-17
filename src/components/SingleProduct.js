@@ -14,12 +14,10 @@ const SingleProduct = ({prod}) => {
   const dispatch = useDispatch()
 
   const{state:{cart , wishlist},dispatchs} = CartState()
-  console.log(wishlist,"wishlist")
   const handleRemoveUser = (id) => {
     
     dispatch(deleteProduct({ id }));
   }
-    console.log(prod)
   return (
     <div className='products'>
         

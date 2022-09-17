@@ -26,7 +26,6 @@ const EditProduct = () => {
     
     const [imageUploads , setImageUpload] = useState(null)
   const existingProduct = products.filter(user => user.id === params.id);
-  console.log(existingProduct , 'existingProduct')
   const { productname, productDescription , imageUpload ,productcategory , productprice , ratings } = existingProduct[0];
   const [values, setValues] = useState({
     productname,

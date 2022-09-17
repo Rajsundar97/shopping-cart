@@ -6,7 +6,6 @@ const Cart = createContext();
 
 const Context = ({children}) => {
     const products = useSelector(store => store.products.productList);
-    console.log(products , 'ContextProduct')
     const [state , dispatchs] = useReducer(cartReducer, {
         products:products,
         cart:[],

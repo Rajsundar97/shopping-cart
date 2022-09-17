@@ -21,7 +21,6 @@ const AddProduct = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const product = useSelector(store => store.products.productList);
-    console.log(product,'product')
     const fileref = useRef();
     const [values, setValues] = useState({
         productname: '',
@@ -61,8 +60,6 @@ const AddProduct = () => {
     const today = new Date();
     const  time = today.getHours() + ":" + today.getMinutes() ;
     
-    
-      console.log(time,"TIME")
 
     dispatch(addProduct({
         id: uuidv4(),

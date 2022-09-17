@@ -9,9 +9,6 @@ import RatingFilter from './RatingFilter'
 const Filter = () => {
 
     const {filterstate:{byRating ,sort } , filterDispatch} = CartState()
-    console.log(sort,"sort")
-
-
   return (
     <div className='filters'>
         <span className='title'>Filter Products</span>

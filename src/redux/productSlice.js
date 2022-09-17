@@ -63,7 +63,6 @@ const productSlice = createSlice({
  
           if (productList) {
             const productListArr = JSON.parse(productList);
-            console.log(productList,"TODOSS")
             productListArr.forEach((product, idx) => {
               if (product.id === action.payload.id) {
                 productListArr.splice(idx, 1);

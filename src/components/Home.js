@@ -15,9 +15,7 @@ const Home = () => {
     
     
     const transformProducts = () => {
-      let sortedProducts = productList;
-      console.log(sortedProducts,"STATEE")
-  
+      let sortedProducts = productList; 
       if (sort) {
         sortedProducts = sortedProducts.slice().sort((a, b) =>
           sort === "lowToHigh" ? a.productprice - b.productprice : b.productprice - a.productprice

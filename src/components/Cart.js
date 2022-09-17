@@ -7,7 +7,6 @@ import Ratings from './Ratings'
 
 const Cart = () => {
     const {state:{cart}, dispatchs}  = CartState()
-    console.log(cart, 'Cart Page')
     const [total , setTotal] = useState();
 
     useEffect(() => {
