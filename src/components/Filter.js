@@ -9,10 +9,7 @@ import RatingFilter from './RatingFilter'
 const Filter = () => {
 
     const {filterstate:{byRating ,sort } , filterDispatch} = CartState()
-    console.log(sort,"sort")
-
-
-  return (
+    return (
     <div className='filters'>
         <span className='title'>Filter Products</span>
         <span>
@@ -21,8 +18,7 @@ const Filter = () => {
                 payload:"lowToHigh"
             })}
             checked={sort === "lowToHigh" ? true : false}
-            />
-            
+            />          
         </span>
         <span>
             <Form.Check inline label='Descending' name='group1' type='radio' id={'inline-2'} onChange={() => filterDispatch({

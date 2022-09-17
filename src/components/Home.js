@@ -16,7 +16,6 @@ const Home = () => {
     
     const transformProducts = () => {
       let sortedProducts = productList;
-      console.log(sortedProducts,"STATEE")
   
       if (sort) {
         sortedProducts = sortedProducts.slice().sort((a, b) =>
