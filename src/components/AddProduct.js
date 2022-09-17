@@ -20,6 +20,7 @@ const colors = {
 const AddProduct = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    //UseSelector is used to retrieve the data from the state manaement
     const product = useSelector(store => store.products.productList);
     console.log(product,'product')
     const fileref = useRef();
@@ -41,6 +42,10 @@ const AddProduct = () => {
     const reset = () => {
         fileref.current.value = "";
       };
+
+
+
+      //This below function helps in Upload in Firebase using the uploadBytes
 
     async function uploadFile(imageUpload){      
     const imgRef = ref(storage , `image + ${v4()}`)
@@ -76,6 +81,8 @@ const AddProduct = () => {
 
 
     }));
+
+    //Once all datat is dispatched it is stored in Local Storage and moved to HomePage
 
     navigate('/');
 
