@@ -18,7 +18,7 @@ root.render(
     <BrowserRouter>
     <Provider store={store}>
       <Context>
-        <ToastContainer />
+        <ToastContainer position="bottom-right" />
       <App />
       </Context>
    
