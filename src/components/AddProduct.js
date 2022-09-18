@@ -23,6 +23,7 @@ const AddProduct = () => {
     const navigate = useNavigate();
     const product = useSelector(store => store.products.productList);
     const fileref = useRef();
+    const defaultImage = "https://image.shutterstock.com/image-vector/thin-line-black-camera-logo-260nw-627479624.jpg"
     const [values, setValues] = useState({
         productname: '',
         productcategory:'',
@@ -70,7 +71,7 @@ const AddProduct = () => {
             productcategory:values.productcategory,
             productprice:parseInt(values.productprice),
             productDescription:values.productDescription,
-            imageUpload:result,
+            imageUpload:imageUpload?result:defaultImage,
             ratings:ratings,
             time:time
     
