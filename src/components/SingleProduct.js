@@ -9,6 +9,8 @@ import {MdBookmarkAdded} from 'react-icons/md'
 import { useDispatch } from 'react-redux'
 import { deleteProduct } from '../redux/productSlice'
 import { CartState } from '../context/Context'
+import {  toast } from 'react-toastify';
+import { FaShoppingCart } from 'react-icons/fa'
 
 const SingleProduct = ({prod}) => {
   const dispatch = useDispatch()
@@ -42,22 +44,26 @@ const SingleProduct = ({prod}) => {
               type:"REMOVE_FROM_CART",
               payload:prod
             })
+            toast.dark(<div className='mx-3'>Removed from Cart<FaShoppingCart className='mx-2' /></div>)
           }} variant='danger' >Remove?</Button>):(<Button onClick={() => {
             dispatchs({
               type:"ADD_TO_CART",
               payload:prod
             })
+            toast(<div className='mx-3'>Cart Added Successfully<FaShoppingCart /></div>)
           }} className='my-3' variant='primary'>Add to Cart</Button>)}
          {wishlist.some(p => p.id === prod.id)?( <Button onClick={() => {
             dispatchs({
               type:"REMOVE_FROM_WISHLIST",
               payload:prod
             })
+            toast.dark(<div>Removed from wishlist <MdOutlineBookmarkAdd /></div>)
           }} variant="outline-secondary">wishlist <MdBookmarkAdded color='black' fontSize='25' /></Button>):( <Button onClick={() => {
             dispatchs({
               type:"ADD_TO_WISHLIST",
               payload:prod
             })
+            toast.success(<div>Added to wishlist <MdBookmarkAdded /></div>)
           }} variant="outline-secondary">wishlist <MdOutlineBookmarkAdd  fontSize='25' /></Button>)}       
          </div>        
         </Card>

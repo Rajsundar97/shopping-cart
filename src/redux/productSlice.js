@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {  toast } from 'react-toastify';
+import { AiOutlineDelete } from "react-icons/ai";
 
 
 function getProdutListfromLocalStorage()
@@ -25,6 +27,7 @@ const productSlice = createSlice({
                 const productListArr = JSON.parse(productList);
                 productListArr.push({...action.payload});  
                 window.localStorage.setItem('productList',JSON.stringify(productListArr));
+                toast.success("Product added Successfully")
 
             }
             else {
@@ -51,6 +54,7 @@ const productSlice = createSlice({
                 product.productcategory = action.payload.productcategory;
                 product.productprice = action.payload.productprice;
                 product.ratings = action.payload.ratings;
+                toast(`Product Edited Successfully (${product.productname})`)
               }
             });
             window.localStorage.setItem('productList', JSON.stringify(productListArr));
@@ -66,6 +70,7 @@ const productSlice = createSlice({
             productListArr.forEach((product, idx) => {
               if (product.id === action.payload.id) {
                 productListArr.splice(idx, 1);
+                toast(<div>Product deleted Successfully <AiOutlineDelete /></div>)
               }
               
             });

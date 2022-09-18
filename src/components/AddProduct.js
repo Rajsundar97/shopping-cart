@@ -8,6 +8,7 @@ import { addProduct } from '../redux/productSlice';
 import { storage  } from '../firebase/firebase';
 import { ref , uploadBytes  , getDownloadURL } from 'firebase/storage';
 import { useSelector } from 'react-redux';
+import {  toast } from 'react-toastify';
 
 
 
@@ -30,6 +31,7 @@ const AddProduct = () => {
     });
     const [imageUpload , setImageUpload] = useState(null)
     
+    const canSave = Boolean(values.productname) && Boolean(values.productDescription) && Boolean(values.productprice) && Boolean(values.productcategory)
     
     const [ratings, setRatings] = useState(1);
     const stars = Array(5).fill(0)
@@ -60,19 +62,23 @@ const AddProduct = () => {
     const today = new Date();
     const  time = today.getHours() + ":" + today.getMinutes() ;
     
+    if(values.productname && values.productcategory && values.productprice && values.productDescription ){
 
-    dispatch(addProduct({
-        id: uuidv4(),
-        productname: values.productname,
-        productcategory:values.productcategory,
-        productprice:parseInt(values.productprice),
-        productDescription:values.productDescription,
-        imageUpload:result,
-        ratings:ratings,
-        time:time
-
-
-    }));
+        dispatch(addProduct({
+            id: uuidv4(),
+            productname: values.productname,
+            productcategory:values.productcategory,
+            productprice:parseInt(values.productprice),
+            productDescription:values.productDescription,
+            imageUpload:result,
+            ratings:ratings,
+            time:time
+    
+    
+        }));
+    }else{
+        alert("Please Enter the Fields")
+    }
 
     navigate('/');
 
@@ -90,7 +96,7 @@ const AddProduct = () => {
                     <input type="text" value={values.productname} 
                      onChange={(e) => setValues({ ...values, productname: e.target.value })} 
                      id="productname" 
-                    placeholder="enter the product name" />
+                    placeholder="enter the product name" required />
                 </div>
                 <div className="  columnAdd">
                     <label htmlFor="productcategory">Categories</label>
@@ -109,11 +115,11 @@ const AddProduct = () => {
                     <input value={values.productprice} 
                      onChange={(e) => setValues({ ...values, productprice: e.target.value })} 
                      type="number" id="productprice" 
-                     placeholder="enter the price.." />
+                     placeholder="enter the price.." required />
                 </div>
                 <div className="  columnAdd">
                     <label htmlFor="contact">Image Upload</label>
-                    <input onChange={(e) => {setImageUpload(e.target.files[0])}} ref={fileref} type="file" name="avatar" accept="image/png, image/jpeg" />
+                    <input onChange={(e) => {setImageUpload(e.target.files[0])}} ref={fileref} type="file" name="avatar" accept="image/png, image/jpeg" required />
                 </div>
             </div>
             <div className="  rowAdd">
@@ -121,7 +127,7 @@ const AddProduct = () => {
                     <label htmlFor="productDescription">Describe about the Product</label>
                     <textarea value={values.productDescription} 
                      onChange={(e) => setValues({ ...values, productDescription: e.target.value })}
-                     id="productDescription" placeholder="Describe about the product" rows="3"></textarea>
+                     id="productDescription" placeholder="Describe about the product" rows="3" required/>
                 </div>
                 <div className="  columnAdd">
                     <label htmlFor="contact">Ratings</label>
@@ -144,7 +150,7 @@ const AddProduct = () => {
                 </div>
                 </div>
             </div>
-            <button className='addbtn' onClick={handleAddProduct} >Submit</button>
+            <button className='addbtn' disabled={!canSave} onClick={handleAddProduct} >Submit</button>
             <Link to='/'>
             <button className='addbtncancel mx-2'  >Cancel</button>
             </Link>
