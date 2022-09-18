@@ -57,13 +57,13 @@ const SingleProduct = ({prod}) => {
               type:"REMOVE_FROM_WISHLIST",
               payload:prod
             })
-            toast.dark(<div>Removed from wishlist <MdOutlineBookmarkAdd /></div>)
+            toast.dark(<div>{prod.productname} removed from wishlist <MdOutlineBookmarkAdd /></div>)
           }} variant="outline-secondary">wishlist <MdBookmarkAdded color='black' fontSize='25' /></Button>):( <Button onClick={() => {
             dispatchs({
               type:"ADD_TO_WISHLIST",
               payload:prod
             })
-            toast.success(<div>Added to wishlist <MdBookmarkAdded /></div>)
+            toast.success(<div> {prod.productname} added to wishlist <MdBookmarkAdded /></div>)
           }} variant="outline-secondary">wishlist <MdOutlineBookmarkAdd  fontSize='25' /></Button>)}       
          </div>        
         </Card>
